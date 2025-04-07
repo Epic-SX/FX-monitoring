@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode, useEffect } from 'react';
-import { useI18n, Locale } from '@/lib/i18n';
+import { useI18n } from '@/lib/i18n';
 
 interface I18nProviderProps {
   children: ReactNode;
@@ -13,6 +13,7 @@ interface I18nProviderProps {
  */
 export function I18nProvider({ children }: I18nProviderProps) {
   // Access locale and updateCount to force re-renders when the language changes
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { locale, updateCount } = useI18n();
   
   // Initialize locale from localStorage on mount

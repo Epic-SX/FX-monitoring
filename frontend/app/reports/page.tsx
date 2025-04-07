@@ -7,9 +7,9 @@ import {
   getSortedRowModel,
   SortingState,
   useReactTable,
+  ColumnDef,
 } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { ArrowUpDown, FileDown, Filter } from 'lucide-react';
 import { t } from '@/lib/i18n';
 import { Header } from '@/components/Header';
@@ -136,8 +136,8 @@ const sampleTrades: Trade[] = [
 export default function Reports() {
   const [sorting, setSorting] = useState<SortingState>([]);
   
-  // Define the columns
-  const columns = [
+  // Define the columns with proper types
+  const columns: ColumnDef<Trade>[] = [
     {
       accessorKey: 'id',
       header: () => <div>{t('ID')}</div>,

@@ -7,6 +7,7 @@ import { Header } from '@/components/Header';
 
 export default function Home() {
   // Use the hook directly to make sure this component re-renders when the language changes
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { locale, updateCount } = useI18n();
   
   return (

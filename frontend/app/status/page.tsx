@@ -1,8 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { CheckCircle, XCircle, AlertTriangle, RefreshCw } from 'lucide-react';
 import { create } from 'zustand';
@@ -132,11 +131,23 @@ function formatUptime(seconds?: number): string {
 // Status indicator component
 function StatusIndicator({ status }: { status: 'online' | 'offline' | 'warning' }) {
   if (status === 'online') {
-    return <CheckCircle className="w-5 h-5 text-green-500" title={t('online')} />;
+    return (
+      <div className="inline-flex" aria-label={t('online')}>
+        <CheckCircle className="w-5 h-5 text-green-500" />
+      </div>
+    );
   } else if (status === 'offline') {
-    return <XCircle className="w-5 h-5 text-red-500" title={t('offline')} />;
+    return (
+      <div className="inline-flex" aria-label={t('offline')}>
+        <XCircle className="w-5 h-5 text-red-500" />
+      </div>
+    );
   } else {
-    return <AlertTriangle className="w-5 h-5 text-amber-500" title={t('warning')} />;
+    return (
+      <div className="inline-flex" aria-label={t('warning')}>
+        <AlertTriangle className="w-5 h-5 text-amber-500" />
+      </div>
+    );
   }
 }
 

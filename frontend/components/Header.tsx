@@ -7,6 +7,8 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 
 export function Header() {
   const pathname = usePathname();
+  // locale is used for determining the current language
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { locale } = useI18n();
   
   // Define navigation links with correct translation keys

@@ -4,10 +4,12 @@ import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { createChart } from 'lightweight-charts';
-import { t } from '@/lib/i18n';
+import { t, useI18n } from '@/lib/i18n';
 import { Header } from '@/components/Header';
 
 export default function Dashboard() {
+  // Use i18n hook to make sure we re-render on language change
+  const { updateCount } = useI18n();
   const chartContainerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -16,12 +18,11 @@ export default function Dashboard() {
     // Create a simple chart to display OHLC data
     const chartContainer = chartContainerRef.current;
     
-    // Create the chart
+    // Create the chart with a simpler configuration
     const chart = createChart(chartContainer, {
       width: chartContainer.clientWidth,
       height: 400,
       layout: {
-        background: { type: 'solid', color: 'white' },
         textColor: '#333',
       },
       grid: {
@@ -88,7 +89,7 @@ export default function Dashboard() {
       window.removeEventListener('resize', handleResize);
       chart.remove();
     };
-  }, []);
+  }, [updateCount]); // Add updateCount as dependency to reload chart when language changes
   
   return (
     <div className="min-h-screen">
